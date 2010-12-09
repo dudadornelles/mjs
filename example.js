@@ -1,13 +1,23 @@
 require.paths.unshift('.');
-require('mjs-core');
+require('src/mjs-core');
 
-document.write(
-	html( [
-			head(),
-			body( [
-					div({style: "border: solid 1px black;"}, [
-							content("lalala")
-						]) 
-				])
-		])
+var loggedIn = true;
+
+console.log(
+	html(
+		head(),
+		body(
+			h1("MJS example"),
+			div({id: 'header'},
+				ul({id: 'nav'},
+					li(a({href: '/home'}, 'Home')),
+					function() {
+						if(loggedIn) {
+							return li(a({href: '/logout'},"Logout"));
+						}
+					}()
+				)
+			)
+		)
+	)
 );
