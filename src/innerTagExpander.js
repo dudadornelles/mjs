@@ -6,7 +6,7 @@ InnerTagExpander = function() {
 			}
 			var expandedTags = "";
 			for(var i = 0; i < tags.length; i++) {
-				expandedTags += tags[i] || "";
+				expandedTags += (typeof(tags[i]) === 'function' ? tags[i]() : tags[i]) || "";
 			}
 			return expandedTags;
 		}

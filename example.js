@@ -15,7 +15,7 @@ console.log(
 						if(loggedIn) {
 							return li(a({href: '/logout'},"Logout"));
 						}
-					}()
+					}
 				)
 			)
 		)
