@@ -52,7 +52,7 @@ warpUp = function() {
 		console.log("ALL TESTS PASSED!!!");
 	}
 	console.log("Ran " + numOfTests + " tests with " + numOfFailingTests + " failures.");
-	console.log("Total of " + numOfAssertions + " assertions with " + numOfFailingAssertions + " failing assertions.");
+	console.log("Total of " + numOfAssertions + " assertions with " + numOfFailingAssertions + " failing assertions.\n");
 }
 
 it = function(behaviour, test) {

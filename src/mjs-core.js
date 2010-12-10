@@ -1,37 +1,17 @@
 var sys = require('sys'); 
-require(__dirname + '/innerTagExpander');
+require(__dirname + '/tagsGenerator');
 
-var Tag = function(_tag) {
+var listOfTags = [
+	"html", "head", "body", "div", "ul", "li", 
+	"span", "h1", "h2", "h3", "h4", "h5", "a", "p",
+	"br", "hr", 
+	"input", "textarea", "fieldset", "select", "option",
+	"table", "th", "td", "tr", 
+	"script"];
 
-	var tag = _tag;
-	var innerTagExpander = InnerTagExpander();
+tagsGenerator = TagsGenerator();
 
-	var private = {
-		attrs: function(_attrs) {
-			if (typeof(_attrs) === 'function' || typeof(_attrs) === 'string') return "";
-				var attributes = "";
-			for(var attr in _attrs) {
-				attributes += " " + attr + "=\'" + _attrs[attr] + "\'";
-			}
-			return attributes;
-		}
-	}
-
-	return function() {
-		args = Array.prototype.slice.call(arguments);
-		return "<" + tag + private.attrs(args[0]) + ">" + innerTagExpander.expand(args) + "</" + tag + ">";
-	}
+var tags = tagsGenerator.generate(listOfTags);
+for(var tag in tags) {
+	GLOBAL[tag] = tags[tag];
 }
-
-
-html = Tag("html");
-head = Tag("head");
-body = Tag("body");
-div = Tag("div");
-ul = Tag("ul");
-li = Tag("li");
-span = Tag("span");
-h1 = Tag("h1");
-a = Tag("a");
-
-content = function(value) { return value; };
